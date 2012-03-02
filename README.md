@@ -39,11 +39,16 @@ All API calls have a very simple overall structure: http://api.yes.com/{version}
 ####Arguments
 
 #####version
-    Only version 1 is available currently.
+
+Only version 1 is available currently.
+
 #####call
-    One of the various API calls described below.
+
+One of the various API calls described below.
+
 #####parameters
-    Each call has different parameters. 
+
+Each call has different parameters. 
 
 The way this is implemented in node-yesapi is that `require('node-yesapi')` returns an object with a list of supported API versions. (Currently there is only one version of the API.) To select the only version of the API, use `require('node-yesapi').v1`.
 
