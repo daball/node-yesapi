@@ -1,0 +1,17 @@
+{
+  "author": "David Ball <david@daball.me> (http://daball.me)",
+  "name": "node-yesapi",
+  "description": "YES.com Node.JS Javascript API library.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/daball/node-yesapi.git"
+  },
+  "main": "api.js",
+  "engines": {
+    "node": "0.4.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
