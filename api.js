@@ -4,7 +4,7 @@
  * Portions of documentation (c) 2008 YES.com. All rights reserved. Reprinted
  * for your convenience only. Source: http://api.yes.com/
  *
- * Copyright (c) 2012, David Ball
+ * Copyright (c) 2012, David Ball <http://daball.me/>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,30 +65,30 @@ function v1(apicall, params, cb) {
     , path: '/1/'  + apicall + p
   };
   //log output
-  console.log('[node-yesapi] Downloading from http://' + o.host + o.path);
+  //console.log('[node-yesapi] Downloading from http://' + o.host + o.path);
   //request url
   http.get(o, function(res) {
     //log output
-    console.log('[node-yesapi]', 'Server responded with status', res.statusCode);
-    console.log('[node-yesapi]', 'Server headers: ' + JSON.stringify(res.headers));
+    //console.log('[node-yesapi]', 'Server responded with status', res.statusCode);
+    //console.log('[node-yesapi]', 'Server headers: ' + JSON.stringify(res.headers));
     res.on('data', function (chunk) {
         if (res.statusCode == 200) {
           var r = JSON.parse(chunk);
           if (r.err) {
             console.warn('[node-yesapi]', "YES.com API error:", r.err);
           }
-          console.log('[node-yesapi] Returned object ', r);
+          //console.log('[node-yesapi] Returned object ', r);
           //send response JSON object to callback
           cb(r);
         }
         else
         {
-          console.log('[node-yesapi]', "Message body:", chunk);
+          //console.log('[node-yesapi]', "Message body:", chunk);
           //send error to callback
           cb(chunk);
         }
     }).on('error', function (e) {
-      console.warn('[node-yesapi]', "Got error:", e.message);
+      console.warn('[node-yesapi]', "Server responded with error:", e.message);
       //send error to callback
       cb(e);
     });
