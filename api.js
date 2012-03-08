@@ -71,26 +71,28 @@ function v1(apicall, params, cb) {
     //log output
     //console.log('[node-yesapi]', 'Server responded with status', res.statusCode);
     //console.log('[node-yesapi]', 'Server headers: ' + JSON.stringify(res.headers));
+    //store data
+    var message = '';
     res.on('data', function (chunk) {
-        if (res.statusCode == 200) {
-          var r = JSON.parse(chunk);
-          if (r.err) {
-            console.warn('[node-yesapi]', "YES.com API error:", r.err);
-          }
-          //console.log('[node-yesapi] Returned object ', r);
-          //send response JSON object to callback
-          cb(r);
-        }
+        if (res.statusCode == 200)
+          message += chunk;
         else
         {
-          //console.log('[node-yesapi]', "Message body:", chunk);
+          //console.log('[node-yesapi]', "Message chunk:", chunk);
           //send error to callback
-          cb(chunk);
+          cb({'err': chunk});
         }
     }).on('error', function (e) {
-      console.warn('[node-yesapi]', "Server responded with error:", e.message);
+      //console.warn('[node-yesapi]', "Server responded with error:", e.message);
       //send error to callback
-      cb(e);
+      cb({'err': e});
+    }).on('end', function () {
+      var obj = JSON.parse(message);
+      //if (r.err)
+        //console.warn('[node-yesapi]', "YES.com API error:", r.err);
+      //console.log('[node-yesapi] Returned object ', r);
+      //send response JSON object to callback
+      cb(obj);
     });
   });
 }
