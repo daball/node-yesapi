@@ -60,24 +60,24 @@ Now here's how to use the `v1` object. There are functions implemented for every
 
 Using the same `yes` object returned above, these API calls are the same examples used on the official API documentation.
 
-* `yes.station({ name: 'WFNX' }, function(data) { })`
-* `yes.stations({ match: 'rock' }, function(data) { })`
-* `yes.stations({ loc: 80202, genre: 'country' }, function(data) { })`
-* `yes.stations({ genre: 'rock', mid: 10956639 }, function(data) { })`
-* `yes.log({ name: 'KEXP' }, function(data) { })`
-* `yes.log({ name: 'WFNX', ago: 1 }, function(data) { })`
-* `yes.recent({ name: 'KEXP' }, function(data) { })`
-* `yes.recent({ name: 'WFNX' }, function(data) { })`
-* `yes.chart({ name: 'WFNX' }, function(data) { })`
-* `yes.chart({ genre: 'Rock' }, function(data) { })`
-* `yes.chart({ genre: 'Jazz', hot: 'fresh' }, function(data) { })`
-* `yes.chart({ name: 'KEXP', date: '2008-08-08', genre: 'Punk' }, function(data) { })`
-* `yes.media({ q: 'distur' }, function(data) { })`
-* `yes.media({ aid: 10657 }, function(data) { })`
-* `yes.media({ mid: 12812281 }, function(data) { })`
-* `yes.related({ mid: 7040859 }, function(data) { })`
+* `yes.station({ name: 'WFNX' }, function(data, err) { })`
+* `yes.stations({ match: 'rock' }, function(data, err) { })`
+* `yes.stations({ loc: 80202, genre: 'country' }, function(data, err) { })`
+* `yes.stations({ genre: 'rock', mid: 10956639 }, function(data, err) { })`
+* `yes.log({ name: 'KEXP' }, function(data, err) { })`
+* `yes.log({ name: 'WFNX', ago: 1 }, function(data, err) { })`
+* `yes.recent({ name: 'KEXP' }, function(data, err) { })`
+* `yes.recent({ name: 'WFNX' }, function(data, err) { })`
+* `yes.chart({ name: 'WFNX' }, function(data, err) { })`
+* `yes.chart({ genre: 'Rock' }, function(data, err) { })`
+* `yes.chart({ genre: 'Jazz', hot: 'fresh' }, function(data, err) { })`
+* `yes.chart({ name: 'KEXP', date: '2008-08-08', genre: 'Punk' }, function(data, err) { })`
+* `yes.media({ q: 'distur' }, function(data, err) { })`
+* `yes.media({ aid: 10657 }, function(data, err) { })`
+* `yes.media({ mid: 12812281 }, function(data, err) { })`
+* `yes.related({ mid: 7040859 }, function(data, err) { })`
 
-The API calls return immediately and you should provide a callback routine in the form of `function (data) { }`.
+The API calls return immediately and you should provide a callback routine in the form of `function (data, err) { }`.
 
 ## License
 

@@ -46,15 +46,15 @@ var http = require('http')
  *  params: JSON object with query parameters. Each call has different parameters.
  *  cb: Callback function when complete.
  *
- * Callback should look like:
- *  function (data) { }
+ * Callback implements characteristics of the http.ClientRequest.
+ *  function (data, err) { }, etc.
  **/
 function v1(apicall, params, cb) {
   //short circuit
   if (!apicall) return;
   //fix missing inputs
   if (!params) params = {};
-  if (!cb) cb = function (data) {};
+  if (!cb) cb = function () {};
   //stringify params
   var p = querystring.stringify(params);
   if (p != '') p = '?' + p;
@@ -73,6 +73,7 @@ function v1(apicall, params, cb) {
     //console.log('[node-yesapi]', 'Server headers: ' + JSON.stringify(res.headers));
     //store data
     var message = '';
+    var error = undefined;
     res.on('data', function (chunk) {
         if (res.statusCode == 200)
           message += chunk;
@@ -80,9 +81,9 @@ function v1(apicall, params, cb) {
         {
           //console.log('[node-yesapi]', "Message chunk:", chunk);
           //send error to callback
-          cb({'err': chunk});
+          cb(undefined, chunk);
         }
-    }).on('error', function (e) {
+    }).on('close', function (err) {
       //console.warn('[node-yesapi]', "Server responded with error:", e.message);
       //send error to callback
       cb({'err': e});
@@ -92,6 +93,8 @@ function v1(apicall, params, cb) {
         //console.warn('[node-yesapi]', "YES.com API error:", r.err);
       //console.log('[node-yesapi] Returned object ', r);
       //send response JSON object to callback
+      //build paramater input for callback
+      var inParams = arguments;
       cb(obj);
     });
   });
